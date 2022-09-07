@@ -12,7 +12,7 @@ public class JdbcCheck {
 
     public static void main(String args[]) {
 
-        if (args.length != 1) {
+        if (args.length != 3) {
             System.out.println("USAGE: java [-cp driver.jar" + File.pathSeparator +
                                ".] JdbcCheck driver ConnectString query");
             System.out.println("\nWhere\n");
@@ -40,10 +40,10 @@ public class JdbcCheck {
 
         try {
             System.out.println("Loading " + driver);
-            Class.forName(driver).newInstance();
+            Class.forName(driver).getConstructor().newInstance();
 
         } catch (Exception e) {
-            System.err.println("Failed to load JDBC driver.");
+            System.err.println("Failed to load JDBC driver: " + e);
             return;
         }
 
